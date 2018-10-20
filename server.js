@@ -15,7 +15,9 @@ router_webhook.post("/webhook", endpoint_webhook);
 router_webhook.get("/webhook", endpoint_webhook);
 router_webhook.get("/", ctx => (ctx.body = "Hello World"));
 
-app.use(KoaLogger());
+if (process.env.NODE_ENV !== "test") {
+  app.use(KoaLogger());
+}
 app.use(KoaBodyParser());
 app.use(router_webhook.routes());
 

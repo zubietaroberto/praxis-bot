@@ -1,4 +1,5 @@
 const { sendMessage } = require("../sender");
+const { queryAndFilterDeputies } = require("../model");
 
 const { FACEBOOK_VERIFY_TOKEN } = process.env;
 
@@ -10,7 +11,15 @@ async function parseMessage(item) {
   const message = item.message.text;
   const message_id = item.message.mid;
 
-  const response = `Your Message: ${message}`;
+  // Query data
+  const resultArray = await queryAndFilterDeputies(message);
+  if (resultArray.length < 1) {
+    await sendMessage("No se encontraron diputados en ese circuito");
+  }
+
+  // A list of names
+  const names = resultArray.map(item => item.nombre).join("\n");
+  const response = `Tus Diputados: \n${names}`;
   await sendMessage(response, sender, message_id);
 }
 
