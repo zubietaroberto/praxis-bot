@@ -2,6 +2,18 @@ const { sendMessage } = require("../sender");
 
 const { FACEBOOK_VERIFY_TOKEN } = process.env;
 
+async function parseMessage(item) {
+  // Null protection
+  if (!item.message) return;
+
+  const sender = item.sender.id;
+  const message = item.message.text;
+  const message_id = item.message.mid;
+
+  const response = `Your Message: ${message}`;
+  await sendMessage(response, sender, message_id);
+}
+
 module.exports = async ctx => {
   // Parse the query params
   const mode = ctx.query["hub.mode"];
@@ -23,39 +35,20 @@ module.exports = async ctx => {
   } else {
     // Message Received
     const body = ctx.request.body;
+    // If not a page, abort
+    if (!(body.object === "page")) {
+      console.log("Not a message");
+      ctx.status = 404;
+      return;
+    }
     const messages = body.entry[0].messaging;
 
     for (const item of messages) {
-      const sender = item.sender.id;
-      const message = item.message.text;
-      const message_id = item.message.mid;
-
-      const response = `Your Message: ${message}`;
-      await sendMessage(response, sender, message_id);
+      await parseMessage(item);
+      console.log("Processed ");
     }
+
+    ctx.status = 200;
+    ctx.body = "OK";
   }
 };
-
-/*
-{
-  "object":"page",
-  "entry":[
-    {
-      "id":"<PAGE_ID>",
-      "time":1458692752478,
-      "messaging":[
-        {
-          "sender":{
-            "id":"<PSID>"
-          },
-          "recipient":{
-            "id":"<PAGE_ID>"
-          },
-
-          ...
-        }
-      ]
-    }
-  ]
-}
-*/
