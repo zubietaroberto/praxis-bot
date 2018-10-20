@@ -18,7 +18,9 @@ async function parseMessage(item) {
   }
 
   // A list of names
-  const names = resultArray.map(item => item.nombre).join("\n");
+  const names = resultArray
+    .map(item => `=> ${item.nombre} - ${item.partido}`)
+    .join("\n");
   const response = `Tus Diputados: \n${names}`;
   await sendMessage(response, sender, message_id);
 }
