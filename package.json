@@ -16,11 +16,16 @@
   "author": "Roberto E. Zubieta",
   "license": "MIT",
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/koa": "^2.0.46",
+    "@types/koa-router": "^7.0.32",
     "jest": "^23.6.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "dotenv": "^6.1.0",
     "koa": "^2.5.3",
+    "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0"
   }
 }
