@@ -1,0 +1,20 @@
+{
+  "name": "praxisbot",
+  "version": "0.0.1",
+  "description": "Chatbot for Praxis",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "praxis",
+    "panama",
+    "chatbot",
+    "facebook-messenger"
+  ],
+  "author": "Roberto E. Zubieta",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
