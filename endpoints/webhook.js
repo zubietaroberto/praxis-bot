@@ -55,8 +55,12 @@ module.exports = async ctx => {
     const messages = body.entry[0].messaging;
 
     for (const item of messages) {
-      await parseMessage(item);
-      console.log("Processed ");
+      try {
+        await parseMessage(item);
+        console.log("Processed");
+      } catch (e) {
+        await sendMessage("No se encontraron diputados en este circuito");
+      }
     }
 
     ctx.status = 200;
