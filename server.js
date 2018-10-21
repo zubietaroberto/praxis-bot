@@ -2,7 +2,7 @@ const Koa = require("koa");
 const KoaRouter = require("koa-router");
 const dotenv = require("dotenv");
 const KoaBodyParser = require("koa-bodyparser");
-const KoaLogger = require("koa-logger");
+const KoaMorgan = require("koa-morgan");
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ router_webhook.get("/webhook", endpoint_webhook);
 router_webhook.get("/", ctx => (ctx.body = "Hello World"));
 
 if (process.env.NODE_ENV !== "test") {
-  app.use(KoaLogger());
+  app.use(KoaMorgan('combined'));
 }
 app.use(KoaBodyParser());
 app.use(router_webhook.routes());
