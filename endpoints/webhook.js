@@ -14,7 +14,7 @@ async function parseMessage(item) {
   // Query data
   const resultArray = await queryAndFilterDeputies(message);
   if (resultArray.length < 1) {
-    await sendMessage("No se encontraron diputados en ese circuito");
+    await sendMessage("No se encontraron diputados en ese circuito", sender);
   }
 
   // A list of names
@@ -55,12 +55,7 @@ module.exports = async ctx => {
     const messages = body.entry[0].messaging;
 
     for (const item of messages) {
-      try {
-        await parseMessage(item);
-        console.log("Processed");
-      } catch (e) {
-        await sendMessage("No se encontraron diputados en este circuito");
-      }
+      await parseMessage(item);
     }
 
     ctx.status = 200;

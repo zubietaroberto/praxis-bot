@@ -10,6 +10,7 @@ const sandbox = sinon.createSandbox();
 beforeAll(() => {
   sandbox.replace(axios, "post", sandbox.fake.resolves("ok"));
 });
+afterAll(() => sandbox.restore());
 
 const TEST_EVENT = {
   object: "page",
