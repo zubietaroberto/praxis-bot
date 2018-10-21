@@ -2,6 +2,9 @@ const { sendMessage } = require("../sender");
 const { queryAndFilterDeputies } = require("../model");
 
 const { FACEBOOK_VERIFY_TOKEN } = process.env;
+const TRY_AGAIN_MESSAGE = `No se encontraron diputados en ese circuito.
+  Inténtalo de vuelta.
+  Por ejemplo, intenta "8-8"`;
 
 async function parseMessage(item) {
   // Null protection
@@ -14,7 +17,7 @@ async function parseMessage(item) {
   // Query data
   const resultArray = await queryAndFilterDeputies(message);
   if (resultArray.length < 1) {
-    await sendMessage("No se encontraron diputados en ese circuito", sender);
+    await sendMessage(TRY_AGAIN_MESSAGE, sender);
     return;
   }
 
