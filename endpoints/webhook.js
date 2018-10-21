@@ -15,6 +15,7 @@ async function parseMessage(item) {
   const resultArray = await queryAndFilterDeputies(message);
   if (resultArray.length < 1) {
     await sendMessage("No se encontraron diputados en ese circuito", sender);
+    return;
   }
 
   // A list of names
