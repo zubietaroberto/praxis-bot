@@ -25,6 +25,7 @@
     "@types/koa-morgan": "^1.0.4",
     "@types/koa-router": "^7.0.32",
     "jest": "^23.6.0",
+    "sinon": "^7.0.0",
     "supertest": "^3.3.0"
   },
   "dependencies": {
