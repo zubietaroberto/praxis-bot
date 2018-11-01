@@ -25,14 +25,14 @@
     "@types/koa-morgan": "^1.0.4",
     "@types/koa-router": "^7.0.32",
     "jest": "^23.6.0",
-    "sinon": "^7.0.0",
+    "sinon": "^7.1.1",
     "supertest": "^3.3.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "csvtojson": "^2.0.8",
     "dotenv": "^6.1.0",
-    "koa": "^2.5.3",
+    "koa": "^2.6.1",
     "koa-bodyparser": "^4.2.1",
     "koa-morgan": "^1.0.1",
     "koa-router": "^7.4.0"
