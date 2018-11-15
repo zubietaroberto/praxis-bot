@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "alias": ["praxisbot.now.sh"],
+  "env": {
+    "FACEBOOK_VERIFY_TOKEN": "@facebook-verify-token",
+    "FACEBOOK_API_KEY": "@facebook-api-key"
+  }
+}
